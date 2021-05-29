@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - .github/workflows/flat.yml
+      - ./postprocessing/prefecture.js
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -20,9 +21,10 @@ jobs:
         uses: githubocto/flat@v3
         with:
           http_url: https://vrs-data.cio.go.jp/vaccination/opendata/latest/prefecture.ndjson
-          downloaded_filename: prefecture.ndjson
+          downloaded_filename: ./prefecture.ndjson
+          postprocess: ./postprocessing/prefecture.js
       - name: Fetch data
         uses: githubocto/flat@v3
         with:
           http_url: https://vrs-data.cio.go.jp/vaccination/opendata/latest/summary_by_date.csv
-          downloaded_filename: summary_by_date.csv
+          downloaded_filename: ./summary_by_date.csv
